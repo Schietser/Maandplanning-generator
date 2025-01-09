@@ -1,5 +1,19 @@
 package entities;
 
-import java.util.Date;
+import lombok.*;
 
-public record PlanningItem(java.time.DayOfWeek DayOfWeek, Date date, Shift shift, Opvoeder opvoeder, int amountOfHours) {}
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+public class PlanningItem {
+
+    private String dayOfWeek;
+    private String date;
+    private String shift;
+    private String UurRegeling;
+    private String opvoeder;
+    private String amountOfHours;
+
+}
+

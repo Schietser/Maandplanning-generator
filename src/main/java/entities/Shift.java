@@ -2,4 +2,6 @@ package entities;
 
 import java.util.Date;
 
-public record Shift(String hours, String name){}
+public record Shift(String hours, String name){
+
+}

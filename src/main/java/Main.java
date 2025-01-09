@@ -1,8 +1,13 @@
+import entities.Opvoeder;
+import entities.PlanningItem;
 import org.apache.poi.ss.usermodel.Sheet;
+import service.OpvoederService;
 import service.PlanningService;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Main {
 
@@ -10,13 +15,12 @@ public class Main {
 
         PlanningService planningService = new PlanningService();
 
-        List<String> namesOfOpvoeders = new ArrayList<>();
-
-        namesOfOpvoeders = planningService.fetchValuesSpecificColumn("E");
-
-        for (String names : namesOfOpvoeders){
-            System.out.println(names);
+        for (PlanningItem planningItem : planningService.fetchAllPlanningsItems()){
+            System.out.println(planningItem);
         }
+
+
+
 
     }
 }
