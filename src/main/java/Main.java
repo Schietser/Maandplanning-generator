@@ -1,24 +1,19 @@
-import entities.Opvoeder;
-import entities.PlanningItem;
-import org.apache.poi.ss.usermodel.Sheet;
+import com.aspose.cells.Workbook;
+import service.ExcelGenerator;
 import service.OpvoederService;
 import service.PlanningService;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         PlanningService planningService = new PlanningService();
+        OpvoederService opvoederService = new OpvoederService();
 
-        for (PlanningItem planningItem : planningService.fetchAllPlanningsItems()){
-            System.out.println(planningItem);
-        }
+        ExcelGenerator excelGenerator = new ExcelGenerator();
 
+        Workbook workbook = excelGenerator.formatWorkbook("jan-2025", opvoederService.getAllOpvoederNames(),planningService.fetchAllPlanningsItems());
+        excelGenerator.storeExcel(workbook);
 
 
 

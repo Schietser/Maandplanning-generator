@@ -1,17 +1,13 @@
 package service;
 
 import entities.PlanningItem;
-import org.apache.commons.lang3.stream.Streams;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellReference;
 
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
 import java.util.*;
 import java.io.*;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 public class PlanningService {
 
@@ -128,6 +124,18 @@ public class PlanningService {
         }
 
         return planningItems;
+    }
+
+    public List<String> listOfDatesInOldPlanning(){
+
+        Set<String> datesInPlanningItems = new HashSet<>();
+        fetchAllPlanningsItems()
+                .forEach(planningItem -> datesInPlanningItems.add(planningItem.getDate()));
+
+        return datesInPlanningItems.stream()
+                .sorted(Comparator.comparingInt(dateStr -> Integer.parseInt(dateStr.split("-")[0])))
+                .collect(Collectors.toList());
+
     }
 
 
